@@ -1,11 +1,11 @@
 Setup:
 
 Install the following in the root folder
-'''
+
 pip install cv2
 pip install numpy
 pip install pillow
-'''
+
 If you are having issues ask chatGPT
 Current I am working out of v2, you can ignore v1.
 

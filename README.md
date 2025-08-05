@@ -1,23 +1,74 @@
-Setup:
+# Facial Recognition System – v2
 
-Install the following in the root folder
+## 📝 Description
 
-pip install cv2
+**Facial Recognition** is a work-in-progress project focused on implementing facial detection and recognition capabilities. The primary goal is to identify individuals in real-time and enable customized responses based on who is recognized.
 
+The envisioned use case is a smart home system that detects who is walking by and delivers personalized interactions, such as greetings, notifications, or environment adjustments. This project aims to blend computer vision with contextual awareness to create a more intelligent and human-centered home experience.
+
+## 🚀 Setup
+
+Install the required Python packages in the project root directory:
+
+```
+pip install opencv-python
 pip install numpy
-
 pip install pillow
+```
 
-If you are having issues ask chatGPT
-Current I am working out of v2, you can ignore v1.
+**💡 Note:** If you’re having installation or usage issues, feel free to ask ChatGPT for help.
 
-Also sometimes the code just doesn't work so try running it twice!
+**🔧 Version Info**
 
-Usage:
-Go into Dataset_Generation.py and set the id to a unique number. Then have the person you want to add to the dataset step into frame and run the code for some time. This will detect their face and take pictures of it and save it into v2/data/ with an according name. Do this with a unique id number for all the people you want in the data set. Also go back in and clean up the data if it is not working well (the face detection may have false positives)
+Current development is happening in the `v2/` folder. You can ignore `v1/`.
 
-Following this, use Create_Classification.py. This will create a new classifier.yml that should be able to detect the people you have added during the dataset generation step. Naturally the more data in dataset generation the better the performance should be in theory. I think around ~15 - 30 seconds works well enough
+Also, sometimes the computers connection to camera doesn't work on the first try. Run the script again if needed.
 
-Finally use Detect_Person.py. The box around your face should have your respective name above it. Currently the id system is hard coded so you will have to go into the draw_boundary function and add more if id == x: statements.
+⸻
 
-I've made a controller.py to let you use the code but its buggy rn so best of luck! Also Detect_Face_Features.py is just there for fun and proof of the face detection working.
+## 🎯 Usage Guide
+
+### 1. Generate a Dataset
+
+Open `Dataset_Generation.py` and set the id to a unique number and name for the person you’re adding to the dataset.
+
+Then:
+-	Have the person stand in front of the camera.
+- Run the script for 15–30 seconds.
+- The system will automatically detect and save their face images to `v2/data/` under a folder with their ID.
+
+⚠️ Important: After collecting the data, review the images and delete any false positives if you want to boost performance.
+
+⸻
+
+### 2. Create the Classifier
+
+Run `Create_Classification.py`.
+This will generate a `classifier.yml` file based on the face data collected earlier.
+-	The more data you collect, the better the model will perform (in theory).
+-	15–30 seconds of good quality data per person usually works well.
+- If you want to add more people you will need to do either:
+  - Manual input it before running `Create_Classification.py`
+  - Edit the `users.json` file
+  - Use Controller.py to run `Create_Classification.py`
+
+⸻
+
+### 3. Detect People
+
+Use `Detect_Person.py` to test recognition.
+- It should draw a box around detected faces with the associated names (based on IDs).
+
+⸻
+
+**🛠️ Extra Tools**
+-	`Controller.py`: A menu-based interface to run the above scripts.
+-	`Detect_Face_Features.py`: Just a demo to visualize basic face detection in action.
+
+⸻
+
+**❓ Troubleshooting**
+-	If the code fails unexpectedly, just try running it again.
+-	Make sure your camera is connected and accessible by OpenCV.
+-	Clean your dataset regularly to maintain accuracy.
+ 

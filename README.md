@@ -14,7 +14,7 @@ Install the required Python packages in the project root directory:
 pip install opencv-python
 pip install numpy
 pip install pillow
-pip install gtts
+pip install edge-tts
 pip install pygame
 ```
 

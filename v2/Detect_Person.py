@@ -1,4 +1,16 @@
 import cv2
+import json
+
+def loadIDs():
+    filepath = "v2/users.json"
+
+    try:
+        with open(filepath, 'r') as file:
+            data = json.load(file)
+            return data
+    except json.JSONDecodeError:
+        print("No data in JSON file!")
+        return {}
 
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -13,10 +25,10 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
         id, _ = clf.predict(gray_img[y : y + h, x : x + w])
 
         # currently this is hard coded --> it will display box based on id of person update accordingly
-        if id == 1:
-            cv2.putText(img,"Person 1", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
-        if id == 2:
-            cv2.putText(img,"Person 2", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
+        all_users = loadIDs()
+        for userID, name in all_users.items():
+            if str(id) == userID:
+                cv2.putText(img, name, (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
         coords = [x, y, w, h]
     
     return coords

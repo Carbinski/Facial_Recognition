@@ -3,44 +3,48 @@ from Dataset_Generation import run_dataset
 from Detect_Face_Features import detect_face_features
 from Detect_Person import detect_person
 
+def print_menu():
+    print("\n" + "="*50)
+    print("Welcome to the Facial Detection & Recognition Controller")
+    print("="*50)
+    print("Please select one of the following options:\n")
+    print("  0. Run Detect Facial Features")
+    print("  1. Run Facial Recognition and Classification")
+    print("  2. Create Classification Data")
+    print("  3. Generate Classifier")
+    print("="*50)
 
-print("Welcome to facial detection and recognition controller")
-print("Please select one of the following options")
-print("0. Run Detect Facial Features\n" \
-    "1. Run Facial Recognition and Classification\n" \
-    "2. Create classification data\n" \
-    "3. Generate classifier\n" \
-    "4. Info")
-
-selection = input()
+print_menu()
 valid_selection = False
 
 while not valid_selection:
-    selection = input()
+    selection = input("Enter your selection (0–4): ").strip()
 
     match selection:
         case "0":
-            print("Running Facial Feature Detection")
-            print("Press q to quit")
+            print("\n[INFO] Running Facial Feature Detection...")
+            print("      → Press 'q' to quit.\n")
             valid_selection = True
             detect_face_features()
+
         case "1":
-            print("Running Facial Recognition and Classification")
-            print("Press q to quit")
+            print("\n[INFO] Running Facial Recognition and Classification...")
+            print("      → Press 'q' to quit.\n")
             valid_selection = True
             detect_person()
+
         case "2":
-            print("Running Generate Classifier")
-            print("Please enter user ID")
-            id = input()
+            print("\n[INFO] Creating Classification Data")
+            id = input("Enter User ID: ").strip()
+            name = input("Enter USer Name: ").strip()
             valid_selection = True
-            run_dataset(id)
+            run_dataset(id, name)
+
         case "3":
-            print("Generating classifier")
+            print("\n[INFO] Generating Classifier...")
             train_classifier()
-            print("You should now be able to use Facial Recognition with your new data")
-        case "4":
-            print("I haven't made this yet!")
+            print("Classifier generated successfully.")
+            print("You can now run Facial Recognition with your new data.\n")
 
         case _:
-            print("Invalid input! Please try again!")
+            print("\nInvalid input! Please enter a number between 0 and 4.\n")

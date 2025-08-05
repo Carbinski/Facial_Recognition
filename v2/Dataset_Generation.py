@@ -1,3 +1,4 @@
+import json
 import cv2
 
 def generate_dataset(img, id, img_id):
@@ -37,18 +38,41 @@ def detect(img, faceCascade, img_id, id):
 
     return img
 
-def run_dataset(id):
+def run_dataset(id, name):
+
+    filepath = "v2/users.json"
+    data = {}
+    try:
+        with open(filepath, 'r') as file:
+            data = json.load(file)
+    except json.JSONDecodeError:
+        print("No data in JSON file, generating new one")
+
+    data[id] = name
+    json_str = json.dumps(data, indent=4)
+    with open(filepath, "w") as file:
+        file.write(json_str)
+
+
+    
+    
+    
+    # model for facial detection
     faceCascade = cv2.CascadeClassifier("classifier/haarcascade_frontalface_default.xml")
 
     # 0 for default, -1 for external
     video_capture = cv2.VideoCapture(0)
 
+    # current frame / image id
     img_id = 0
 
+    # loop until q pressed
     while True:
+        # capture video and detect face
         _, img = video_capture.read()
         img = detect(img, faceCascade, img_id, id)
         
+        # show img with facial detection overlay
         cv2.imshow("face detection", img)
         img_id += 1
         
@@ -62,5 +86,6 @@ def run_dataset(id):
 
 if __name__ == "__main__":
     # set user ID
-    id = 1
-    run_dataset(id)
+    id = 3
+    name = "Shaan"
+    run_dataset(id, name)

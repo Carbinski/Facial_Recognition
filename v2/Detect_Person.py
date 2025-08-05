@@ -11,10 +11,12 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
     for (x, y, w, h) in features:
         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2);
         id, _ = clf.predict(gray_img[y : y + h, x : x + w])
+
+        # currently this is hard coded --> it will display box based on id of person update accordingly
         if id == 1:
-            cv2.putText(img,"Carson", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
+            cv2.putText(img,"Person 1", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
         if id == 2:
-            cv2.putText(img,"Juliana", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
+            cv2.putText(img,"Person 2", (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
         coords = [x, y, w, h]
     
     return coords

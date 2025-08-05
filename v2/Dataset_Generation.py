@@ -29,12 +29,10 @@ def detect(img, faceCascade, img_id, id):
         x, y, w, h = coords
         roi_img = img[y : y + h, x : x + h]
 
-        # TODO: Manually update user_id when adding new people
-        user_id = 2
+        # set user id
+        user_id = id
 
-        # save every 4 images
-        if img_id % 4 == 0:
-            generate_dataset(roi_img, user_id, img_id)
+        generate_dataset(roi_img, user_id, img_id)
 
     return img
 
@@ -86,6 +84,6 @@ def run_dataset(id, name):
 
 if __name__ == "__main__":
     # set user ID
-    id = 3
-    name = "Shaan"
+    id = 4
+    name = "Person 4"
     run_dataset(id, name)

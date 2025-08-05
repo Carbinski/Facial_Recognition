@@ -14,6 +14,8 @@ Install the required Python packages in the project root directory:
 pip install opencv-python
 pip install numpy
 pip install pillow
+pip install gtts
+pip install pygame
 ```
 
 **💡 Note:** If you’re having installation or usage issues, feel free to ask ChatGPT for help.

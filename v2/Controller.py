@@ -2,6 +2,7 @@ from Create_Classification import train_classifier
 from Dataset_Generation import run_dataset
 from Detect_Face_Features import detect_face_features
 from Detect_Person import detect_person
+from tts import run_tts
 
 def print_menu():
     print("\n" + "="*50)
@@ -12,6 +13,7 @@ def print_menu():
     print("  1. Run Facial Recognition and Classification")
     print("  2. Create Classification Data")
     print("  3. Generate Classifier")
+    print("  4. Run TTS Software")
     print("="*50)
 
 print_menu()
@@ -45,6 +47,12 @@ while not valid_selection:
             train_classifier()
             print("Classifier generated successfully.")
             print("You can now run Facial Recognition with your new data.\n")
+
+        case "4":
+            print("\n[INFO] Running TTS...")
+            text = input("Enter Text: ")
+            valid_selection = True
+            run_tts(text)
 
         case _:
             print("\nInvalid input! Please enter a number between 0 and 4.\n")

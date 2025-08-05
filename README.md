@@ -71,4 +71,6 @@ Use `Detect_Person.py` to test recognition.
 -	If the code fails unexpectedly, just try running it again.
 -	Make sure your camera is connected and accessible by OpenCV.
 -	Clean your dataset regularly to maintain accuracy.
+-	The Haas Cascade Facial detection works best when facing head on.
+-	Try to have training data mirror use case when testing the `Detect_Person.py`
  

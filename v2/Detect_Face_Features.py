@@ -1,5 +1,4 @@
 import cv2
-
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     features = classifier.detectMultiScale( # using the classifier do the following

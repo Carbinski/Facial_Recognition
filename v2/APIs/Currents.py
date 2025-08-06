@@ -1,9 +1,17 @@
 import requests
+from dotenv import load_dotenv
+import os
+
 
 def request_api(amount: int) -> list:
+
+    # load the local api key from the .env file
+    load_dotenv()
+    api_key = os.getenv("CURRENTS_API")
+
     url = "https://api.currentsapi.services/v1/latest-news"
     headers = {
-        "Authorization": "V0_7jJ_l3XAOI5PcEuw5cZ2b45o352bWv5GSPvRzl2O33tpH"
+        "Authorization": api_key
     }
     params = {
         "language": "en"

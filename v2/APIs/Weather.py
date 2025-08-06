@@ -1,11 +1,18 @@
 import requests
+from dotenv import load_dotenv
+import os
 
 def request_api() -> dict:
+
+    # get api key
+    load_dotenv()
+    api_key = os.getenv("WEATHER_API")
+
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "lat": 33.628,
         "lon": -117.927,
-        "appid": "05a8b17327695560a4a1cd8fd0c11617",
+        "appid": api_key,
         "units": "imperial", 
         "lang": "en"
     }

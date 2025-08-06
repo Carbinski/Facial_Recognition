@@ -5,7 +5,6 @@ https://alexwohlbruck.github.io/cat-facts/
 
 **News APIs**
 https://currentsapi.services/en/profile
-V0_7jJ_l3XAOI5PcEuw5cZ2b45o352bWv5GSPvRzl2O33tpH
 
 https://github.com/cyberboysumanjay/Inshorts-News-API
 

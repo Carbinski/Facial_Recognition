@@ -141,8 +141,6 @@ def respond_person():
 
 def respond_person_infinite():
     respond_person()
-    time.sleep(10)
-    respond_person()
 
 
 if __name__ == "__main__":

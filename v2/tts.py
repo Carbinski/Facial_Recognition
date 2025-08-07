@@ -1,4 +1,3 @@
-from aiohttp import ClientConnectorDNSError
 import edge_tts
 import asyncio
 import tempfile

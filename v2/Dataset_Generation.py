@@ -6,12 +6,17 @@ def generate_dataset(img, id, img_id):
     cv2.imwrite("v2/data/user." + str(id) + "." + str(img_id) + ".jpg", img)
 
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
+    # convert image to black and white
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    # perform facial detection
     features = classifier.detectMultiScale( # using the classifier do the following
         gray_img, # the image
         scaleFactor, # scale image - controls how small / large of a face can be detected
         minNeighbors # how many features need to be detected to confirm face
     )
+
+    # draws box around face + label
     coords = []
     for (x, y, w, h) in features:
         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2)
@@ -38,6 +43,7 @@ def detect(img, faceCascade, img_id, id):
 
 def run_dataset(id, name):
 
+    # get data from json file
     filepath = "v2/users.json"
     data = {}
     try:
@@ -46,14 +52,11 @@ def run_dataset(id, name):
     except json.JSONDecodeError:
         print("No data in JSON file, generating new one")
 
+    # updating json file to have new user 
     data[id] = name
     json_str = json.dumps(data, indent=4)
     with open(filepath, "w") as file:
         file.write(json_str)
-
-
-    
-    
     
     # model for facial detection
     faceCascade = cv2.CascadeClassifier("classifier/haarcascade_frontalface_default.xml")

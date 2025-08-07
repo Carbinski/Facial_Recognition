@@ -13,12 +13,16 @@ def loadIDs():
         return {}
 
 def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
+    
+    # detect all faces in the scene
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     features = classifier.detectMultiScale( # using the classifier do the following
         gray_img, # the image
         scaleFactor, # scale image - controls how small / large of a face can be detected
         minNeighbors # how many features need to be detected to confirm face
     )
+
+    # iterate through the faces
     coords = []
     for (x, y, w, h) in features:
         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2);
@@ -46,6 +50,7 @@ def recognize(img, clf, faceCascade):
 def detect_person():
     faceCascade = cv2.CascadeClassifier("classifier/haarcascade_frontalface_default.xml")
 
+    # load user generated face id
     clf = cv2.face.LBPHFaceRecognizer_create()
     clf.read("v2/classifier.yml")
 

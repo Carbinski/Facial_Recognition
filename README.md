@@ -8,7 +8,7 @@ The envisioned use case is a smart home system that detects who is walking by an
 
 ## 🚀 Setup
 
-Install the required Python packages in the project root directory:
+Install the required Python packages in the project root directory (I definitely forgot some):
 
 ```
 pip install opencv-python

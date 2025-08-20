@@ -1,4 +1,7 @@
 v2/data/*
+v2/build/*
+v2/dist/*
+v2/Controller.spec
 !v2/data/.gitkeep
 
 .env

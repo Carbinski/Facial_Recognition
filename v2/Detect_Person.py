@@ -26,13 +26,13 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
     coords = []
     for (x, y, w, h) in features:
         cv2.rectangle(img, (x, y), (x + w, y + h), color, 2);
-        id, _ = clf.predict(gray_img[y : y + h, x : x + w])
+        id, confidence = clf.predict(gray_img[y : y + h, x : x + w])
 
-        # currently this is hard coded --> it will display box based on id of person update accordingly
         all_users = loadIDs()
         for userID, name in all_users.items():
             if str(id) == userID:
-                cv2.putText(img, name, (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
+                text = f'{name}: {confidence}'
+                cv2.putText(img, text, (x, y - 4), cv2.QT_FONT_NORMAL, 0.8, color, 1, cv2.LINE_AA)
         coords = [x, y, w, h]
     
     return coords
